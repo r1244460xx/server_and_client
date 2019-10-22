@@ -23,12 +23,13 @@ msg = msg.decode("utf-8")
 header = msg.split("\r\n")
 try:
     method = header[0].split(" ")[0]
-    obj = header[0].split(" ")[1].split("/")[1]
+    obj = header[0].split(" ")[1].replace("/", "\\")
 except:
     print(header)
 if method == "GET":
-    if os.path.isfile(obj):
-        fp = open(obj, 'r')
+    path = "." + obj
+    if os.path.isfile(path):
+        fp = open(path, 'r')
         body = ""  
         body += "HTTP/1.1 200 OK\r\n"
         body += "Date: " + format_date_time(time.mktime(datetime.datetime.now().timetuple())) + "\r\n"
