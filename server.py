@@ -24,6 +24,8 @@ header = msg.split("\r\n")
 try:
     method = header[0].split(" ")[0]
     obj = header[0].split(" ")[1].replace("/", "\\")
+    if obj == "\\":
+        obj = "\\index.html"
 except:
     print(header)
 if method == "GET":
